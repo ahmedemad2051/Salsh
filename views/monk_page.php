@@ -25,12 +25,12 @@ if($num_of_courses>1)
 elseif($num_of_courses==1)
 {
 
-    $course_id=$all_courses->course_id;
+    $course_id=$all_courses[0]->course_id;
 
-    // check if user come to monk page without course id or wrong course id
-    if(!isset($_GET['course_id']) || $_GET['course_id']!=$course_id)
+    // check if user come to monk page with wrong course id
+    if(!isset($_GET['cid']) || $_GET['cid']!=$course_id)
     {
-        header("location:index.php?course_id=$course_id");
+        header("location:index.php?cid=$course_id");
     }
 
     include "monk_course.php";

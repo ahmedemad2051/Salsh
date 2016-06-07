@@ -8,12 +8,14 @@
 
 session_start();
 include_once 'models/autoload.php';
+// check if i go to register page
 if(isset($_GET['p'])&& $_GET['p']=='register')
 {
     include "controllers/register_controller.php";
     die();
 }
 
+// if user not authenticated
 if(!isset($_SESSION['status']) || $_SESSION['status']!='Auth')
 {
     include "controllers/login_controller.php";
@@ -38,6 +40,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status']!='Auth')
                 <a class="navbar-brand" href="index.php">Slash</a>
             </div>
             <?php
+            // if admin go to course page
             if(isset($_GET['p'])&&$_GET['p']=='course'&&isset($_SESSION['who'])&&$_SESSION['who']=='admin')
             { ?>
                 <div class="navbar-header">
@@ -49,6 +52,7 @@ if(!isset($_SESSION['status']) || $_SESSION['status']!='Auth')
             <?php } ?>
 
             <?php
+            // if user go to his course page
             if(isset($_GET['cid'])&&!isset($_SESSION['who']))
             {
                 $id=$_SESSION['user_id'];
@@ -126,3 +130,4 @@ if(!isset($_SESSION['status']) || $_SESSION['status']!='Auth')
 
 </body>
 </html>
+
